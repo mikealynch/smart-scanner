@@ -4,9 +4,7 @@ import streamlit as st
 from PIL import Image
 import numpy as np
 import io
-import torch
 import cv2
-import re
 import pandas as pd
 import openai
 from dotenv import load_dotenv
