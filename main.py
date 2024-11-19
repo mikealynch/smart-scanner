@@ -5,6 +5,7 @@ from PIL import Image
 import numpy as np
 import io
 import cv2
+import re
 import pandas as pd
 import openai
 from dotenv import load_dotenv
@@ -75,14 +76,18 @@ if uploaded_file is not None:
         # Step 9: Convert to Pillow image for saving without compression
         pil_image = Image.fromarray(cv2.cvtColor(cropped_image, cv2.COLOR_BGR2RGB))
         
+        # Compress the image by resizing it (downscale by 50%)
+        compressed_image = pil_image.resize((int(pil_image.width * 0.5), int(pil_image.height * 0.5)))
+
+        
         # Display the cropped image in Streamlit
-        st.image(pil_image, caption="Cropped Business Card", use_container_width=True)
+        st.image(compressed_image, caption="Cropped Business Card", use_container_width=True)
 
         # Initialize EasyOCR reader for English and Spanish
         reader = easyocr.Reader(['en', 'es'])
 
         # Convert the cropped image into a numpy array
-        image_np = np.array(pil_image)
+        image_np = np.array(compressed_image)
 
         # Perform OCR with EasyOCR
         result = reader.readtext(image_np)
@@ -116,13 +121,13 @@ if uploaded_file is not None:
             #st.write(f'Bounding Box: {bbox}')  # You can also show the bounding box if needed
             
         text_df = pd.DataFrame(text_data)
-        #st.write(text_df)
+        st.write(text_df)
                 
                 
         text_values = [entry['text'] for entry in text_data]  # Extract the 'text' from each dictionary
         prompt = "the information in this data set was pulled from a single business card. using this information, create valid json that only contains first name, last name, position, email, phone number, country, and company name: " + " ".join(text_values)
         
-        #st.write(prompt)
+        st.write(prompt)
         
         
         
