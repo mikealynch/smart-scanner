@@ -1,8 +1,8 @@
+streamlit
 easyocr
 pillow
-cv2
+opencv-python
 pandas
 openai
-dotenv
+python-dotenv
 requests
-json
