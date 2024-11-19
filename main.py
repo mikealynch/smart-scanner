@@ -81,7 +81,7 @@ if uploaded_file is not None:
 
         
         # Display the cropped image in Streamlit
-        st.image(compressed_image, caption="Cropped Business Card", use_container_width=True)
+        #st.image(compressed_image, caption="Cropped Business Card", use_container_width=True)
 
         # Initialize EasyOCR reader for English and Spanish
         reader = easyocr.Reader(['en', 'es'])
@@ -93,7 +93,7 @@ if uploaded_file is not None:
         result = reader.readtext(image_np)
 
         # Display detected text and bounding boxes in Streamlit
-        st.write("Detected Text from the business card:")
+        #st.write("Detected Text from the business card:")
         
         text_data = []
         
@@ -121,7 +121,7 @@ if uploaded_file is not None:
             #st.write(f'Bounding Box: {bbox}')  # You can also show the bounding box if needed
             
         text_df = pd.DataFrame(text_data)
-        st.write(text_df)
+        #st.write(text_df)
                 
                 
         text_values = [entry['text'] for entry in text_data]  # Extract the 'text' from each dictionary
@@ -159,7 +159,7 @@ if uploaded_file is not None:
         while valid_json == False:
             try:
                 json.loads(clean_response)
-                st.write(clean_response)
+                #st.write(clean_response)
                 valid_json = True
             except json.JSONDecodeError:
                 prompt = "convert this text to valid json: " + " ".join(clean_response)
@@ -180,7 +180,7 @@ if uploaded_file is not None:
                 result = response.json()
 
                 clean_response = result['choices'][0]['text'].strip()
-                st.write(clean_response)
+                #st.write(clean_response)
                 
                 valid_json = False
 
