@@ -1,8 +1,8 @@
 easyocr
 pillow
-opencv-python
+opencv-python-headless
 pandas
 openai
 python-dotenv
 requests
-
+torch==2.1.0
