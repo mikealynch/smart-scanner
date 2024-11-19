@@ -1,6 +1,6 @@
 easyocr
 pillow
-numpy as np
+numpy
 cv2
 pandas
 openai
