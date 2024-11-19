@@ -127,7 +127,7 @@ if uploaded_file is not None:
         text_values = [entry['text'] for entry in text_data]  # Extract the 'text' from each dictionary
         prompt = "the information in this data set was pulled from a single business card. using this information, create valid json that only contains first name, last name, position, email, phone number, country, and company name: " + " ".join(text_values)
         
-        st.write(prompt)
+        #st.write(prompt)
         
         
         
